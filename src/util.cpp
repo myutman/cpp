@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../include/header.h"
 
 int max(int a, int b) {
   logDebug('m');

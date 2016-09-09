@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../include/header.h"
 
 int main() {
     int a = doComputation(5, 7.0); 

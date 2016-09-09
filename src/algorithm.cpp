@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../include/header.h"
 
 int doComputation(int a, double b) {
   int c = max(3, 4);    

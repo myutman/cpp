@@ -1,17 +1,17 @@
 all: lab1
 	./lab1
 
-lab1: main.o util.o algorithm.o io.o
-	g++ main.o util.o algorithm.o io.o -o lab1
+lab1: bin/main.o bin/util.o bin/algorithm.o bin/io.o
+	g++ bin/main.o bin/util.o bin/algorithm.o bin/io.o -o lab1
 
-main.o: main.cpp header.h
-	g++ -c main.cpp -o main.o
+bin/main.o: src/main.cpp include/header.h
+	g++ -c src/main.cpp -o bin/main.o
 
-util.o: util.cpp header.h
-	g++ -c util.cpp -o util.o
+bin/util.o: src/util.cpp include/header.h
+	g++ -c src/util.cpp -o bin/util.o
 
-io.o: io.cpp header.h
-	g++ -c io.cpp -o io.o
+bin/io.o: src/io.cpp include/header.h
+	g++ -c src/io.cpp -o bin/io.o
 
-algorithm.o: algorithm.cpp header.h
-	g++ -c algorithm.cpp -o algorithm.o
+bin/algorithm.o: src/algorithm.cpp include/header.h
+	g++ -c src/algorithm.cpp -o bin/algorithm.o
