@@ -1,11 +1,11 @@
-#ifndef __ALGORITHM_H
-#define __ALGORITHM_H
+//#ifndef __ALGORITHM_H
+//#define __ALGORITHM_H
 #include "../include/algorithm.h"
-#endif
+//#endif
 
-#ifndef __UTIL_H
-#define __UTIL_H
+//#ifndef __UTIL_H
+//#define __UTIL_H
 #include "../include/util.h"
-#endif
+//#endif
 
 int doComputation(int a, double b);
