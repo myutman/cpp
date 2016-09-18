@@ -1,7 +1,7 @@
-all: lab1
-	./lab1
+all: start lab1
 
-lab1: start bin/main.o bin/util.o bin/algorithm.o bin/io.o
+
+lab1: bin/main.o bin/util.o bin/algorithm.o bin/io.o
 	g++ bin/main.o bin/util.o bin/algorithm.o bin/io.o -o lab1
 
 start:
@@ -19,6 +19,6 @@ bin/io.o: src/io.cpp
 bin/algorithm.o: src/algorithm.cpp include/algorithm.h
 	g++ -c src/algorithm.cpp -o bin/algorithm.o
 
-clear:
+clean:
 	rm -rf bin
 	rm -rf lab1
