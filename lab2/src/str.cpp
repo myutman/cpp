@@ -1,7 +1,9 @@
 char * strcpy(char * destination, const char * source){
-    for (int i = 0; source[i] != 0; i++){
+    int i;
+    for (i = 0; source[i] != 0; i++){
         destination[i] = source[i];
     }
+    destination[i] = 0;
     return destination;
 }
 
@@ -11,6 +13,7 @@ char * strcat(char * destination, const char * source){
     for (int i = 0; source[i] != 0; i++){
         destination[j + i] = source[i];
     }
+    destination[j + i] = 0;
     return destination;    
 }
 
