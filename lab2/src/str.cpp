@@ -1,32 +1,35 @@
+#define size_t unsigned int
+
 char * strcpy(char * destination, const char * source){
-    int i;
-    for (i = 0; source[i] != 0; i++){
-        destination[i] = source[i];
+    const char* c = source;
+    for (char* d = destination; *c != 0; c++, d++, *d = 0){
+        *d = *c;
     }
-    destination[i] = 0;
     return destination;
 }
 
 char * strcat(char * destination, const char * source){
-    int j;
-    for (j = 0; destination[j] != 0; j++);
-    for (int i = 0; source[i] != 0; i++){
-        destination[j + i] = source[i];
+    char* a = destination;
+    const char* b = source;
+    for (; *a != 0; a++);
+    for (; *b != 0; a++, b++, *a = 0){
+        *a = *b;
     }
-    destination[j + i] = 0;
     return destination;    
 }
 
 int strcmp(const char * str1, const char * str2){
-    for (int i = 0; str1[i] != 0 || str2[i] != 0; i++){
-        if (str1[i] < str2[i]) return -1;
-        if (str1[i] > str2[i]) return 1;
+    const char* a = str1;
+    const char* b = str2;
+    for (; *a != 0 || *b != 0; a++, b++){
+        if (*a < *b) return -1;
+        if (*a > *b) return 1;
     }
     return 0;
 }
 
-size_t strlen(conts char * str){
-    size_t j;
-    for (j = 0; str[j] != 0; j++);
-    return j;
+size_t strlen(const char * str){
+    const char* c = str;
+    for (; *c != 0; c++);
+    return c - str;
 }
