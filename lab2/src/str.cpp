@@ -1,9 +1,9 @@
-#define size_t unsigned int
+#include "stddef.h"
 
 char * strcpy(char * destination, const char * source){
-    const char* c = source;
-    for (char* d = destination; *c != 0; c++, d++, *d = 0){
-        *d = *c;
+    for (char* d = destination; *source;){
+        *d++ = *source++;
+        *d = 0;
     }
     return destination;
 }
