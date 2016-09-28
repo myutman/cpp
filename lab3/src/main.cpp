@@ -7,15 +7,17 @@
 #include "../include/clist.h"
 
 struct position_node {
-	int x, y;
-	struct intrusive_node node;
+    int x, y;
+    struct intrusive_node node;
 };
 
 void remove_position(intrusive_list *lst, int x, int y) { // removes all (x, y) pairs
-    for (intrusive_node* cur = lst->head; cur != NULL; cur = cur->next){
+    for (intrusive_node* cur = lst->head; cur != NULL;){
         position_node *item = container_of(cur, struct position_node, node);
+        intrusive_node *old = cur;
+        cur = cur->next;
         if (item->x == x && item->y == y){
-            remove_node(lst, cur);
+            remove_node(lst, old);
         }
     }
 }
@@ -31,15 +33,18 @@ void add_position(intrusive_list *lst, int x, int y) {
 void show_all_positions(intrusive_list *lst) {
     //if (lst->head == NULL) printf("<empty line>");
     for (intrusive_node* cur = lst->head; cur != NULL; cur = cur->next){
-   		position_node *item = container_of(cur, position_node, node);
+        position_node *item = container_of(cur, position_node, node);
         printf("(%d %d) ", item->x, item->y);
     }
     printf("\n");
 }
 
 void remove_all_positions(intrusive_list *lst) {
-    for (intrusive_node* cur = lst->head; cur != NULL; cur = cur->next)
-        remove_node(lst, cur);
+    for (intrusive_node* cur = lst->head; cur != NULL;){
+        intrusive_node *old = cur;
+        cur = cur->next;
+        remove_node(lst, old);
+    }
 }
 
 int main() {
