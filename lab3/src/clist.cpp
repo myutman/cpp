@@ -21,7 +21,8 @@ void remove_node(intrusive_list *lst, intrusive_node *nd){
         nd->prev->next = nd->next;
     if (nd->next != NULL)
         nd->next->prev = nd->prev;
-    free(nd);
+    position_node *seg = container_of(nd, position_node, node);
+    free(seg);
 }
 
 int get_length(intrusive_list *lst){

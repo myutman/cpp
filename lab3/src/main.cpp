@@ -1,15 +1,9 @@
-#define container_of(ptr, type, member) (type*)((char*)(ptr) - offsetof(type, member))
 #include <stddef.h>
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "../include/clist.h"
-
-struct position_node {
-    int x, y;
-    struct intrusive_node node;
-};
 
 void remove_position(intrusive_list *lst, int x, int y) { // removes all (x, y) pairs
     for (intrusive_node* cur = lst->head; cur != NULL;){
