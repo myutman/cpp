@@ -74,13 +74,12 @@ int main() {
             show_all_positions(lst);
         }
         else if(strcmp(s, "exit") == 0){
-            remove_all_positions(lst);
-	    free(lst);
+                    }
+
 	    return 0;            
         }
         else{
             printf("Unknown command\n");
-        }
         scanf("\n");
     }
     remove_all_positions(lst);

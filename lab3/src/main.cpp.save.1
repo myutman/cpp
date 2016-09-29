@@ -58,7 +58,9 @@ int main() {
             int x, y;
             scanf("%d %d", &x, &y);
             add_position(lst, x, y);
-        }
+        }remove_all_positions(lst);
+    free(lst);
+
         else if (strcmp(s, "rm") == 0){
             int x, y;
             scanf("%d %d", &x, &y);
@@ -74,9 +76,7 @@ int main() {
             show_all_positions(lst);
         }
         else if(strcmp(s, "exit") == 0){
-            remove_all_positions(lst);
-	    free(lst);
-	    return 0;            
+            return 0;            
         }
         else{
             printf("Unknown command\n");
