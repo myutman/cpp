@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 void copy(void *dest, void *src, size_t size){
 	for (int i = 0; i < size; i++){
 		*((char*) (dest + i)) =	*((char*) (src + i)); 
@@ -22,4 +24,5 @@ int mergesort (void* base, size_t num, size_t size, int (*cmp(const void*, const
 	}
 	for (int i = 0; i < num * size; i + size)
 		copy(&base[i], &an[i * num], size);
+	free(an);
 }
