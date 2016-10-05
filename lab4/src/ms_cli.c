@@ -4,7 +4,7 @@
 int main(int argc, char* argv[]){
 	int i;
 	if (argv[1][0] == 'i'){
-		int *a = malloc((argc - 1) * sizeof(int));
+		int *a = (int*)malloc((argc - 1) * sizeof(int));
 		for (i = 2; i < argc; i++){
 			a[i - 2] = atoi(argv[i]);
 		}
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]){
 		free(a);
 	}
 	else if(argv[1][0] == 's'){
-		char **a = malloc((argc - 1) * sizeof(char*));
+		char **a = (char**)malloc((argc - 1) * sizeof(char*));
 		for (i = 2; i < argc; i++){
 			a[i - 2] = malloc(strlen(argv[i]) + 1);
 			strcpy(a[i - 2], argv[i]);
@@ -28,7 +28,7 @@ int main(int argc, char* argv[]){
 		free(a);
 	}
 	else{
-		char *a = malloc((argc - 2) * sizeof(char));
+		char *a = (char*)malloc((argc - 2) * sizeof(char));
 		for (i = 2; i < argc; i++){
 			a[i - 2] = argv[i][0];
 		}

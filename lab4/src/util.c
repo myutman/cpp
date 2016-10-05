@@ -26,18 +26,20 @@ void copy(char *dest, char *src, size_t size){
 	//printf("%d\n"); 
 }
 
-int strcmp(char** a, char** b){
-	char *str1 = *a;
-	char *str2 = *b;
+int strcmp(const void* a, const void* b){
+	char **s1 = (char**)a;
+	char **s2 = (char**)b;
+	char *str1 = *s1;
+	char *str2 = *s2;
 	//printf("%s %s %c %c", str1, str2, *str1, *str2); 
 	while (*str1 && *str1 == *str2) str1++, str2++;
-	return (int)(*str1) - (int)(*str2);
+	return ((int)(*str1) - (int)(*str2));
 }
 
-int intcmp(int* a, int* b){
-	return (*a) - (*b);
+int intcmp(const void* a, const void* b){
+	return (*((int*)a) - *((int*)b));
 }
 
-int charcmp(char* a, char* b){
-	return (int)(*a) - (int)(*b);
+int charcmp(const void* a, const void* b){
+	return ((int)*((char*)a) - (int)*((char*)b));
 }
