@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int mergesort (void* base, size_t num, size_t size, int(*cmp)(const void*, const void*)){
-	if (num == 1)
+	if (num <= 1)
 		return 0;
 	int n1 = num / 2;
 	mergesort(base, n1, size, cmp);
