@@ -24,6 +24,7 @@ int main(int argc, char* argv[]){
 		mergesort(a, argc - 2, sizeof(char*), strcmp);
 		for (i = 2; i < argc; i++){
 			printf("%s ", a[i - 2]);
+			free(a[i - 2]);
 		}
 		free(a);
 	}
