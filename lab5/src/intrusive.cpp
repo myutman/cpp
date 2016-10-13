@@ -24,14 +24,14 @@ intrusive_list load(char* filename, bool b){
 	intrusive_list lst;
 	init_list(&lst);
 	if (b){
-		int x, y;
+		int x = 0, y = 0;
 		while (!feof(inf)){
 			fscanf(inf, "%d %d ", &x, &y);
 			add_position(&lst, x, y);
 		}
 	}
 	else{
-		int x, y;
+		int x = 0, y = 0;
 		while (fread(&x, 3, 1, inf) == 1){
 			fread(&y, 3, 1, inf);
 			add_position(&lst, x, y);

@@ -17,7 +17,7 @@ int count(intrusive_list *lst){
 int main(int argc, char* argv[]){
 	char* arg[5];
 	for (int i = 0; i < argc; i++){
-		arg[i] = (char*) malloc(strlen(argv[i]));
+		arg[i] = (char*) malloc(strlen(argv[i]) + 1);
 		strcpy(arg[i], argv[i]);
 	}
 	bool b = strcmp(arg[1], "loadtext") == 0;
