@@ -19,24 +19,42 @@ void add_position(intrusive_list *lst, int x, int y) {
     add_node(lst, &nd->node);
 }
 
+const int maxn = 1 << 24;
+
 intrusive_list load(char* filename, bool b){
 	FILE* inf = fopen(filename, b ? "rt" : "rb");
 	intrusive_list lst;
 	init_list(&lst);
-	if (b){
-		int x = 0, y = 0;
-		while (!feof(inf)){
-			fscanf(inf, "%d %d ", &x, &y);
-			add_position(&lst, x, y);
+	int* vt = (int*) malloc(sizeof(int));
+	int sz = 1;
+	int n = 0;
+	int x[2] = {0, 0};
+	while (!feof(inf)){
+		if (b)
+			fscanf(inf, "%d %d ", &x[0], &x[1]);
+		else{
+			if (fread(&x[0], 3, 1, inf) != 1) break;
+			fread(&x[1], 3, 1, inf);
+			for (int z = 0; z < 2; z++)
+				if (x[z] > (maxn >> 1)) x[z] = - ((x[z] - 1) ^ (maxn - 1));
+		}
+		for (int z = 0; z < 2; z++){
+			if (n == sz){
+				int *b = (int*) malloc(sizeof(int) * 2 * sz);
+				for (int i = 0; i < sz; i++)
+					b[i] = vt[i];
+				sz *= 2;
+				free(vt);
+				vt = b;
+			}
+			vt[n++] = x[z];
 		}
 	}
-	else{
-		int x = 0, y = 0;
-		while (fread(&x, 3, 1, inf) == 1){
-			fread(&y, 3, 1, inf);
-			add_position(&lst, x, y);
-		}
+	while(n > 0){
+		n -= 2;
+		add_position(&lst, vt[n], vt[n + 1]);
 	}
+	free(vt);
 	fclose(inf);
 	return lst;
 }
@@ -48,14 +66,12 @@ void save(intrusive_list *lst, char* filename, bool b){
         if (b)
 		fprintf(ouf, "%d %d\n", item -> x, item -> y);
 	else{
-		fwrite(&(item -> x), 3, 1, ouf);
-		fwrite(&(item -> y), 3, 1, ouf);
-		void *k = &(item->x);
-		for (int i = 0; i < 3; i++){
-			int z = *((char*)k + i);
-			printf("%d ", z);
-		}
-		printf("\n");
+		int x = (item -> x);
+		int y =(item -> y);
+		if (x < 0) x = 1 + ((-x) ^ (maxn - 1));
+		if (y < 0) y = 1 + ((-y) ^ (maxn - 1));
+		fwrite(&x, 3, 1, ouf);
+		fwrite(&y, 3, 1, ouf);
 	}
     }
     fclose(ouf);
@@ -68,7 +84,7 @@ void print_node(position_node* item, void* par){
 
 void count_node(position_node* item, void* par){
 	int* ct = (int*) par;
-	*ct++;
+	ct[0]++;
 }
 
 void apply(intrusive_list *lst, void (*op)(position_node*, void*), void* par) {
