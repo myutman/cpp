@@ -30,8 +30,10 @@ intrusive_list load(char* filename, bool b){
 	int n = 0;
 	int x[2] = {0, 0};
 	while (!feof(inf)){
-		if (b)
-			fscanf(inf, "%d %d ", &x[0], &x[1]);
+		if (b){
+			int k = fscanf(inf, "%d %d ", &x[0], &x[1]);
+			if (k != 2) break;
+		}
 		else{
 			if (fread(&x[0], 3, 1, inf) != 1) break;
 			fread(&x[1], 3, 1, inf);
