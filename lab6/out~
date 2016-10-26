@@ -1,0 +1,51 @@
+start_element phonebook
+handle_data '
+' (len 1)
+handle_data '    ' (len 4)
+start_element human name= Petr Petrovich Petrov 
+handle_data '
+' (len 1)
+handle_data '        ' (len 8)
+start_element phone
+handle_data '7654321' (len 7)
+end_element phone
+handle_data '
+' (len 1)
+handle_data '        ' (len 8)
+start_element phone
+handle_data '9051234567' (len 10)
+end_element phone
+handle_data '
+' (len 1)
+handle_data '    ' (len 4)
+end_element human
+handle_data '
+' (len 1)
+handle_data '    ' (len 4)
+start_element human name= Ivan Ivanonich Ivanov 
+handle_data '
+' (len 1)
+handle_data '        ' (len 8)
+start_element phone
+handle_data '1234567' (len 7)
+end_element phone
+handle_data '
+' (len 1)
+handle_data '        ' (len 8)
+start_element phone
+handle_data '9211234567' (len 10)
+end_element phone
+handle_data '
+' (len 1)
+handle_data '        ' (len 8)
+start_element phone
+handle_data '9111234567' (len 10)
+end_element phone
+handle_data '
+' (len 1)
+handle_data '    ' (len 4)
+end_element human
+handle_data '
+' (len 1)
+end_element phonebook
+Result is 0
