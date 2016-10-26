@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
     printf(#CMD_NAME" must take "#ARGS_NM" args.\n");		\
     continue;					                \
   }
-  
-  while (1) { 
+
+  while (1) {
     printf("> ");
     assert(fgets(buff, sizeof(buff), stdin));
     init_cmd(&cmd, buff);
