@@ -1,4 +1,4 @@
-#include "xml.h"
+#include "../include/xml.h"
 #include <time.h>
 
 #define MAXSZ 1000

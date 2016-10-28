@@ -1,7 +1,7 @@
-#include "xml.h"
-#include "names.h"
+#include "../include/xml.h"
+#include "../include/names.h"
 
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 100000
 
 human_t x;
 int ct;
@@ -47,7 +47,9 @@ void start_element(void *data, const char *element, const char **attribute) {
 	}
 	else if (!strcmp(element, "phone")){
 		phone_number = 1;
-		x.phones[ct][0] = '\0';
+		int j;
+		for (j = 0; j <= 20; j++)
+			x.phones[ct][j] = '\0';
 	}
 	//printf("hello6\n");
 }
@@ -69,12 +71,12 @@ void end_element(void *data, const char *element) {
 }
 
 void handle_data(void *data, const char *content, int length) {
-	if (phone_number){
-		char* tmp = malloc(length + 1);
+	if (phone_number){ 
+		char* tmp = (char*) malloc(length + 1);
 		strncpy(tmp, content, length);
-		tmp[length + 1] = '\0';
-		strcat(x.phones[ct], tmp);		
-		//printf("%s\n", x.phones[ct - 1]);    
+		tmp[length] = '\0';
+		strcat(x.phones[ct], tmp);	
+		free(tmp);
 	}
 	/*char *tmp = malloc(length);
     strncpy(tmp, content, length);
