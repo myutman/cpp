@@ -47,6 +47,7 @@ void start_element(void *data, const char *element, const char **attribute) {
 	}
 	else if (!strcmp(element, "phone")){
 		phone_number = 1;
+		x.phones[ct][0] = '\0';
 	}
 	//printf("hello6\n");
 }
@@ -61,6 +62,7 @@ void end_element(void *data, const char *element) {
 		push_back_human(book_it, &x);	
 	}
 	else if (!strcmp(element, "phone")){
+		ct++;
 		phone_number = 0;
 	}
 	//printf("hello4\n");
@@ -68,8 +70,10 @@ void end_element(void *data, const char *element) {
 
 void handle_data(void *data, const char *content, int length) {
 	if (phone_number){
-		strncpy(x.phones[ct], content, length);
-		x.phones[ct++][length] = '\0';
+		char* tmp = malloc(length + 1);
+		strncpy(tmp, content, length);
+		tmp[length + 1] = '\0';
+		strcat(x.phones[ct], tmp);		
 		//printf("%s\n", x.phones[ct - 1]);    
 	}
 	/*char *tmp = malloc(length);
