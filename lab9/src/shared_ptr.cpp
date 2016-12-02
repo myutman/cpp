@@ -17,13 +17,18 @@ void shared_ptr::swap(shared_ptr& other){
 }
 
 shared_ptr& shared_ptr::operator=(const shared_ptr &other){	
-	shared_ptr tmp(other);
-	(*this).swap(tmp);
+	if (this != &other){	
+		shared_ptr tmp(other);
+		(*this).swap(tmp);
+	}
 	return *this;
 }
 
 shared_ptr::~shared_ptr(){
 	storage_->decr();
+	if (!storage_->getCounter()){
+		delete storage_;
+	}
 }
 
 Matrix* shared_ptr::ptr() const{
@@ -34,7 +39,11 @@ bool shared_ptr::isNull() const{
 	return storage_->getObject() == NULL;
 }
 
-void shared_ptr::reset(Matrix* obj){	
+void shared_ptr::reset(Matrix* obj){
+	storage_->decr();
+	if (!storage_->getCounter()){
+		delete storage_;
+	}
 	storage_ = new Storage(obj);
 }
 

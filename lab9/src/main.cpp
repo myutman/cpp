@@ -67,9 +67,8 @@ void test_assignment() {
 void test_swap() {
     shared_ptr p1 = make_shared(1);
     shared_ptr p2 = make_shared(2);
-
     std::swap(p1, p2);
-	std::cerr << "hello\n";
+    //std::cerr << "hello\n";
     assert(*p1 == *make_shared(2));
     assert(*p2 == *make_shared(1));
 
@@ -186,7 +185,7 @@ void init_test_map(test_map& m) {
 
 void run_all(const test_map& m) {
     for (test_map::const_iterator it = m.begin(); it != m.end(); ++it) {
-		std::cerr << it->first << "\n";
+		//std::cerr << it->first << "\n";
 		it->second();
     }
 }

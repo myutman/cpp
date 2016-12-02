@@ -24,6 +24,7 @@ class shared_ptr {
         Storage(Matrix* mtx){
 			//std::cerr << "hello\n";
 			data_ = mtx;
+			ref_count_ = 1;
 			//std::cerr << "hello\n";
 		}
         ~Storage(){
@@ -35,9 +36,6 @@ class shared_ptr {
 		}
         void decr(){
 			ref_count_--;
-			if (!ref_count_){
-				delete this;
-			}
 		}
 
         int getCounter() const{

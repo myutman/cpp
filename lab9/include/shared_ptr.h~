@@ -7,7 +7,7 @@ class shared_ptr {
   public:
     shared_ptr(Matrix* obj = 0);
     shared_ptr(const shared_ptr& other);
-    shared_ptr& operator=(shared_ptr &other);
+    shared_ptr& operator=(const shared_ptr &other);
     ~shared_ptr();
 	void swap(shared_ptr& other);
 
@@ -24,6 +24,7 @@ class shared_ptr {
         Storage(Matrix* mtx){
 			//std::cerr << "hello\n";
 			data_ = mtx;
+			ref_count_ = 1;
 			//std::cerr << "hello\n";
 		}
         ~Storage(){
@@ -35,9 +36,6 @@ class shared_ptr {
 		}
         void decr(){
 			ref_count_--;
-			if (!ref_count_){
-				delete this;
-			}
 		}
 
         int getCounter() const{
