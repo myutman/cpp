@@ -38,7 +38,7 @@ void Scheme::print_all_figures(){
 void Scheme::zoom_figure(int id, int factor){
     for (int i = 0; i < size; i++)
         if (figures_[i]->get_id() == id){
-            figures_[id]->zoom(factor);
+            figures_[i]->zoom(factor);
             return;
         }
 }

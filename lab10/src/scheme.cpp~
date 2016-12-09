@@ -18,7 +18,7 @@ void Scheme::push_back_figure(Figure* fg){
 void Scheme::remove_figure(int id){
     int j = -1;
     for (int i = 0; i < size; i++)
-        if (figures_[i]->id == id){
+        if (figures_[i]->get_id() == id){
             j = i;
             break;
         }
@@ -37,7 +37,7 @@ void Scheme::print_all_figures(){
 
 void Scheme::zoom_figure(int id, int factor){
     for (int i = 0; i < size; i++)
-        if (figures_[i]->id == id){
+        if (figures_[i]->get_id() == id){
             figures_[id]->zoom(factor);
             return;
         }
@@ -52,7 +52,7 @@ Figure* Scheme::is_inside_figure(int x, int y){
 
 void Scheme::move(int id, int new_x, int new_y){
     for (int i = 0; i < size; i++)
-        if (figures_[i]->id == id){
+        if (figures_[i]->get_id() == id){
             figures_[i]->move(new_x, new_y);
             return;
         }
