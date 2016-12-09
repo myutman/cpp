@@ -7,8 +7,9 @@ class Rectangle : public Figure {
     void print() const;
     bool is_inside(int px, int py) const;
     void zoom(int factor);
+    int get_id();
     
   protected:
-    int widtt, height;
+    int width, height;
 
 };
